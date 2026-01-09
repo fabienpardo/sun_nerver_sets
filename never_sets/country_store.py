@@ -26,8 +26,26 @@ class CountryDef:
 
 def load_country(path: str | Path) -> CountryDef:
     p = Path(path)
-    data = json.loads(p.read_text(encoding="utf-8"))
-    points = [CountryPoint(label=pt["label"], lat=float(pt["lat"]), lon=float(pt["lon"])) for pt in data["points"]]
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"malformed JSON in {p}") from exc
+    if not isinstance(data, dict):
+        raise ValueError(f"expected object in {p}")
+    if "id" not in data:
+        raise ValueError(f"missing id in {p}")
+    if "points" not in data:
+        raise ValueError(f"missing points list in {p}")
+    points_raw = data["points"]
+    if not isinstance(points_raw, list) or not points_raw:
+        raise ValueError(f"missing points list in {p}")
+    points = []
+    for pt in points_raw:
+        if not isinstance(pt, dict):
+            raise ValueError(f"invalid point entry in {p}")
+        if not {"label", "lat", "lon"}.issubset(pt.keys()):
+            raise ValueError(f"missing point fields in {p}")
+        points.append(CountryPoint(label=pt["label"], lat=float(pt["lat"]), lon=float(pt["lon"])))
     return CountryDef(
         id=str(data["id"]),
         name=str(data.get("name", data["id"])),

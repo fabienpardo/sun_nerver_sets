@@ -1,4 +1,5 @@
 \
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -24,6 +25,27 @@ class TestNeverSets(unittest.TestCase):
         self.assertIsInstance(res.witness.decl_deg, float)
         self.assertIsInstance(res.witness.hour_angle_deg, float)
         self.assertGreaterEqual(len(res.witness.best_point_indices), 1)
+
+    def test_load_country_rejects_malformed_json(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "bad.json"
+            path.write_text("{bad json", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, f"malformed JSON in {path}"):
+                load_country(path)
+
+    def test_load_country_requires_fields(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "missing.json"
+            path.write_text('{"points": [{"label": "A", "lat": 0, "lon": 0}]}', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, f"missing id in {path}"):
+                load_country(path)
+
+    def test_load_country_requires_point_fields(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "missing_point_fields.json"
+            path.write_text('{"id": "X", "points": [{"label": "A", "lat": 0}]}', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, f"missing point fields in {path}"):
+                load_country(path)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
