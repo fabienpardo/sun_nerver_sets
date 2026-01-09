@@ -1,0 +1,93 @@
+{
+  "timestamp_utc": "2026-01-09T20:42:21.463216+00:00",
+  "country": {
+    "id": "usa",
+    "name": "United States (incl. selected territories)",
+    "notes": "Anchor points across mainland + major territories (illustrative).",
+    "points": [
+      {
+        "label": "Washington, DC",
+        "lat": 38.9072,
+        "lon": -77.0369
+      },
+      {
+        "label": "Los Angeles",
+        "lat": 34.0522,
+        "lon": -118.2437
+      },
+      {
+        "label": "Seattle",
+        "lat": 47.6062,
+        "lon": -122.3321
+      },
+      {
+        "label": "Anchorage",
+        "lat": 61.2181,
+        "lon": -149.9003
+      },
+      {
+        "label": "Unalaska (Aleutians)",
+        "lat": 53.8846,
+        "lon": -166.532
+      },
+      {
+        "label": "Honolulu",
+        "lat": 21.3069,
+        "lon": -157.8583
+      },
+      {
+        "label": "San Juan (Puerto Rico)",
+        "lat": 18.4655,
+        "lon": -66.1057
+      },
+      {
+        "label": "Charlotte Amalie (USVI)",
+        "lat": 18.3358,
+        "lon": -64.8963
+      },
+      {
+        "label": "Pago Pago (American Samoa)",
+        "lat": -14.2756,
+        "lon": -170.702
+      },
+      {
+        "label": "Hag\u00e5t\u00f1a (Guam)",
+        "lat": 13.4443,
+        "lon": 144.7937
+      },
+      {
+        "label": "Wake Island",
+        "lat": 19.2814,
+        "lon": 166.647
+      },
+      {
+        "label": "Baker Island",
+        "lat": 0.2192,
+        "lon": -176.4769
+      },
+      {
+        "label": "Howland Island",
+        "lat": 0.8076,
+        "lon": -176.6175
+      }
+    ]
+  },
+  "result": {
+    "always_daylight_somewhere": false,
+    "limit_altitude_deg": 0.0,
+    "limit_dot": 0.0,
+    "margin_altitude_deg": -19.52967960660415
+  },
+  "witness": {
+    "decl_deg": -23.439281,
+    "hour_angle_deg": 39.0,
+    "worst_max_dot": -0.3342951091816315,
+    "worst_max_altitude_deg": -19.52967960660415,
+    "best_point_indices": [
+      7
+    ],
+    "best_point_labels": [
+      "Charlotte Amalie (USVI)"
+    ]
+  }
+}

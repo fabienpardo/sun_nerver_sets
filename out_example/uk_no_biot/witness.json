@@ -1,0 +1,93 @@
+{
+  "timestamp_utc": "2026-01-09T20:42:21.458504+00:00",
+  "country": {
+    "id": "uk_no_biot",
+    "name": "United Kingdom (excluding BIOT/Diego Garcia)",
+    "notes": "UK + selected Overseas Territories, excluding BIOT.",
+    "points": [
+      {
+        "label": "London",
+        "lat": 51.5074,
+        "lon": -0.1278
+      },
+      {
+        "label": "Aberdeen",
+        "lat": 57.1497,
+        "lon": -2.0943
+      },
+      {
+        "label": "Gibraltar",
+        "lat": 36.1408,
+        "lon": -5.3536
+      },
+      {
+        "label": "Bermuda",
+        "lat": 32.296,
+        "lon": -64.782
+      },
+      {
+        "label": "Anguilla",
+        "lat": 18.2208,
+        "lon": -63.0686
+      },
+      {
+        "label": "Cayman Islands",
+        "lat": 19.3022,
+        "lon": -81.3857
+      },
+      {
+        "label": "Falkland Islands (Stanley)",
+        "lat": -51.7963,
+        "lon": -59.5236
+      },
+      {
+        "label": "Saint Helena (Jamestown)",
+        "lat": -15.9667,
+        "lon": -5.7167
+      },
+      {
+        "label": "Pitcairn Islands",
+        "lat": -25.0667,
+        "lon": -130.1
+      },
+      {
+        "label": "Turks & Caicos",
+        "lat": 21.3419,
+        "lon": -71.7979
+      },
+      {
+        "label": "Montserrat",
+        "lat": 16.7425,
+        "lon": -62.1874
+      },
+      {
+        "label": "British Virgin Islands (Road Town)",
+        "lat": 18.4207,
+        "lon": -64.639
+      },
+      {
+        "label": "South Georgia (King Edward Point)",
+        "lat": -54.2806,
+        "lon": -36.5092
+      }
+    ]
+  },
+  "result": {
+    "always_daylight_somewhere": false,
+    "limit_altitude_deg": 0.0,
+    "limit_dot": 0.0,
+    "margin_altitude_deg": -20.60695503467445
+  },
+  "witness": {
+    "decl_deg": -9.439281000000001,
+    "hour_angle_deg": 111.5,
+    "worst_max_dot": -0.3519552724455111,
+    "worst_max_altitude_deg": -20.60695503467445,
+    "best_point_indices": [
+      1
+    ],
+    "best_point_labels": [
+      "Aberdeen"
+    ]
+  }
+}

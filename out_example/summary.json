@@ -1,0 +1,54 @@
+{
+  "data_dir": "/mnt/data/never_sets_mini_library/data/countries",
+  "out_dir": "/mnt/data/never_sets_mini_library/out_example",
+  "visibility_limit_deg": 0.0,
+  "decl_step_deg": 0.5,
+  "hour_angle_step_deg": 0.5,
+  "countries": [
+    {
+      "id": "danish_realm",
+      "name": "Danish Realm (Denmark + Faroe Islands + Greenland)",
+      "pass": false,
+      "worst_altitude_deg": -35.08710494021579,
+      "margin_deg": -35.08710494021579,
+      "witness_decl_deg": -23.439281,
+      "witness_hour_angle_deg": 131.0
+    },
+    {
+      "id": "france",
+      "name": "France (French Republic)",
+      "pass": true,
+      "worst_altitude_deg": 19.91717481654175,
+      "margin_deg": 19.91717481654175,
+      "witness_decl_deg": 23.060719,
+      "witness_hour_angle_deg": 111.5
+    },
+    {
+      "id": "russia",
+      "name": "Russia (Russian Federation)",
+      "pass": false,
+      "worst_altitude_deg": -25.74618315551912,
+      "margin_deg": -25.74618315551912,
+      "witness_decl_deg": -23.439281,
+      "witness_hour_angle_deg": 278.5
+    },
+    {
+      "id": "uk_no_biot",
+      "name": "United Kingdom (excluding BIOT/Diego Garcia)",
+      "pass": false,
+      "worst_altitude_deg": -20.60695503467445,
+      "margin_deg": -20.60695503467445,
+      "witness_decl_deg": -9.439281000000001,
+      "witness_hour_angle_deg": 111.5
+    },
+    {
+      "id": "usa",
+      "name": "United States (incl. selected territories)",
+      "pass": false,
+      "worst_altitude_deg": -19.52967960660415,
+      "margin_deg": -19.52967960660415,
+      "witness_decl_deg": -23.439281,
+      "witness_hour_angle_deg": 39.0
+    }
+  ]
+}

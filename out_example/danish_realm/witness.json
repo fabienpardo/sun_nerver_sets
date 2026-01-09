@@ -1,0 +1,68 @@
+{
+  "timestamp_utc": "2026-01-09T20:42:21.397600+00:00",
+  "country": {
+    "id": "danish_realm",
+    "name": "Danish Realm (Denmark + Faroe Islands + Greenland)",
+    "notes": "Anchor points across Denmark, Faroes, and Greenland.",
+    "points": [
+      {
+        "label": "Copenhagen",
+        "lat": 55.6761,
+        "lon": 12.5683
+      },
+      {
+        "label": "Aarhus",
+        "lat": 56.1629,
+        "lon": 10.2039
+      },
+      {
+        "label": "T\u00f3rshavn (Faroe Islands)",
+        "lat": 62.0079,
+        "lon": -6.79
+      },
+      {
+        "label": "Nuuk (Greenland)",
+        "lat": 64.1814,
+        "lon": -51.6941
+      },
+      {
+        "label": "Tasiilaq (Greenland east)",
+        "lat": 65.6142,
+        "lon": -37.6368
+      },
+      {
+        "label": "Qaanaaq (Greenland north)",
+        "lat": 77.467,
+        "lon": -69.228
+      },
+      {
+        "label": "Qaqortoq (Greenland south)",
+        "lat": 60.7195,
+        "lon": -46.0453
+      },
+      {
+        "label": "Ilulissat (Greenland)",
+        "lat": 69.2167,
+        "lon": -51.1
+      }
+    ]
+  },
+  "result": {
+    "always_daylight_somewhere": false,
+    "limit_altitude_deg": 0.0,
+    "limit_dot": 0.0,
+    "margin_altitude_deg": -35.08710494021579
+  },
+  "witness": {
+    "decl_deg": -23.439281,
+    "hour_angle_deg": 131.0,
+    "worst_max_dot": -0.574821103683607,
+    "worst_max_altitude_deg": -35.08710494021579,
+    "best_point_indices": [
+      0
+    ],
+    "best_point_labels": [
+      "Copenhagen"
+    ]
+  }
+}

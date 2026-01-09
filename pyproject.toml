@@ -1,0 +1,6 @@
+[project]
+name = "never_sets"
+version = "0.1.0"
+description = "Mini library to test 'sun never sets' coverage over territory point sets."
+requires-python = ">=3.10"
+dependencies = ["numpy"]

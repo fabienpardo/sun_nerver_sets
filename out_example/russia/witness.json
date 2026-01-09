@@ -1,0 +1,73 @@
+{
+  "timestamp_utc": "2026-01-09T20:42:21.453196+00:00",
+  "country": {
+    "id": "russia",
+    "name": "Russia (Russian Federation)",
+    "notes": "Anchor points from Kaliningrad to Chukotka, plus intermediate cities.",
+    "points": [
+      {
+        "label": "Kaliningrad",
+        "lat": 54.7104,
+        "lon": 20.4522
+      },
+      {
+        "label": "Moscow",
+        "lat": 55.7558,
+        "lon": 37.6173
+      },
+      {
+        "label": "Yekaterinburg",
+        "lat": 56.8389,
+        "lon": 60.6057
+      },
+      {
+        "label": "Novosibirsk",
+        "lat": 55.0084,
+        "lon": 82.9357
+      },
+      {
+        "label": "Irkutsk",
+        "lat": 52.2869,
+        "lon": 104.305
+      },
+      {
+        "label": "Vladivostok",
+        "lat": 43.1155,
+        "lon": 131.8855
+      },
+      {
+        "label": "Petropavlovsk-Kamchatsky",
+        "lat": 53.0241,
+        "lon": 158.6436
+      },
+      {
+        "label": "Anadyr (Chukotka)",
+        "lat": 64.7337,
+        "lon": 177.5089
+      },
+      {
+        "label": "Sochi",
+        "lat": 43.5855,
+        "lon": 39.7231
+      }
+    ]
+  },
+  "result": {
+    "always_daylight_somewhere": false,
+    "limit_altitude_deg": 0.0,
+    "limit_dot": 0.0,
+    "margin_altitude_deg": -25.74618315551912
+  },
+  "witness": {
+    "decl_deg": -23.439281,
+    "hour_angle_deg": 278.5,
+    "worst_max_dot": -0.43438525507331266,
+    "worst_max_altitude_deg": -25.74618315551912,
+    "best_point_indices": [
+      7
+    ],
+    "best_point_labels": [
+      "Anadyr (Chukotka)"
+    ]
+  }
+}

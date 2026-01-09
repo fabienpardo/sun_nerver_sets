@@ -1,0 +1,88 @@
+{
+  "timestamp_utc": "2026-01-09T20:42:21.448143+00:00",
+  "country": {
+    "id": "france",
+    "name": "France (French Republic)",
+    "notes": "Anchor points across metropolitan France and overseas territories/collectivities.",
+    "points": [
+      {
+        "label": "Paris",
+        "lat": 48.8566,
+        "lon": 2.3522
+      },
+      {
+        "label": "Guadeloupe (Basse-Terre)",
+        "lat": 16.265,
+        "lon": -61.551
+      },
+      {
+        "label": "Martinique (Fort-de-France)",
+        "lat": 14.6415,
+        "lon": -61.0242
+      },
+      {
+        "label": "French Guiana (Cayenne)",
+        "lat": 4.9224,
+        "lon": -52.3135
+      },
+      {
+        "label": "Saint-Pierre-et-Miquelon",
+        "lat": 46.78,
+        "lon": -56.17
+      },
+      {
+        "label": "R\u00e9union (Saint-Denis)",
+        "lat": -20.8821,
+        "lon": 55.4507
+      },
+      {
+        "label": "Mayotte (Mamoudzou)",
+        "lat": -12.7806,
+        "lon": 45.2278
+      },
+      {
+        "label": "Tahiti (Papeete)",
+        "lat": -17.5516,
+        "lon": -149.5585
+      },
+      {
+        "label": "Wallis & Futuna (Mata-Utu)",
+        "lat": -13.2825,
+        "lon": -176.1736
+      },
+      {
+        "label": "New Caledonia (Noum\u00e9a)",
+        "lat": -22.27,
+        "lon": 166.44
+      },
+      {
+        "label": "Kerguelen Islands",
+        "lat": -49.35,
+        "lon": 70.21
+      },
+      {
+        "label": "Clipperton Island",
+        "lat": 10.2833,
+        "lon": -109.2167
+      }
+    ]
+  },
+  "result": {
+    "always_daylight_somewhere": true,
+    "limit_altitude_deg": 0.0,
+    "limit_dot": 0.0,
+    "margin_altitude_deg": 19.91717481654175
+  },
+  "witness": {
+    "decl_deg": 23.060719,
+    "hour_angle_deg": 111.5,
+    "worst_max_dot": 0.34066139295591413,
+    "worst_max_altitude_deg": 19.91717481654175,
+    "best_point_indices": [
+      9
+    ],
+    "best_point_labels": [
+      "New Caledonia (Noum\u00e9a)"
+    ]
+  }
+}
