@@ -40,6 +40,13 @@ class TestNeverSets(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, f"missing id in {path}"):
                 load_country(path)
 
+    def test_load_country_requires_points_list(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "missing_points.json"
+            path.write_text('{"id": "X"}', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, f"missing points list in {path}"):
+                load_country(path)
+
     def test_load_country_requires_point_fields(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir) / "missing_point_fields.json"
