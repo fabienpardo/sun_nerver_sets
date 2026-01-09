@@ -26,8 +26,9 @@ def render_markdown_report(country: CountryDef, result: CoverageResult) -> str:
         "",
         "## Points (anchors)",
     ]
+    best_indices_set = set(w.best_point_indices)
     for i, pt in enumerate(country.points):
-        mark = " ← best at witness" if i in w.best_point_indices else ""
+        mark = " ← best at witness" if i in best_indices_set else ""
         lines.append(f"- {i:02d}. **{pt.label}** (lat `{pt.lat:.4f}`, lon `{pt.lon:.4f}`){mark}")
 
     if country.notes:
