@@ -63,30 +63,41 @@ def check_never_sets(
     decls = np.arange(-obliquity_deg, obliquity_deg + 1e-12, decl_step_deg, dtype=float)
     Hs = np.arange(0.0, 360.0, hour_angle_step_deg, dtype=float)
 
-    global_min_max_dot = float("inf")
-    w_decl = 0.0
-    w_H = 0.0
-    best_indices = (0,)
+    h = np.deg2rad(Hs)
+    cos_h = np.cos(h)
+    sin_h = np.sin(h)
+    d = np.deg2rad(decls)
+    cd = np.cos(d)
+    sd = np.sin(d)
 
-    for decl in decls:
-        S = sun_vectors_for_decl(float(decl), Hs)  # (3,H)
-        dots = N @ S                                # (K,H)
-        max_dots = dots.max(axis=0)                 # (H,)
-        idx = int(np.argmin(max_dots))
-        min_max_dot = float(max_dots[idx])
+    sun_vectors = np.stack(
+        [
+            cd[:, None] * cos_h[None, :],
+            cd[:, None] * sin_h[None, :],
+            np.broadcast_to(sd[:, None], (decls.size, Hs.size)),
+        ],
+        axis=1,
+    )  # (D,3,H)
 
-        if min_max_dot < global_min_max_dot:
-            global_min_max_dot = min_max_dot
-            w_decl = float(decl)
-            w_H = float(Hs[idx])
+    dots = np.einsum("kq,dqh->dkh", N, sun_vectors)  # (D,K,H)
+    max_dots = dots.max(axis=1)  # (D,H)
+    hour_idx_per_decl = np.argmin(max_dots, axis=1)  # (D,)
+    min_max_per_decl = max_dots[np.arange(decls.size), hour_idx_per_decl]
 
-            col = dots[:, idx]
-            best = float(col.max())
-            if return_multiple_best_points:
-                idxs = np.where(col >= best - tie_tol)[0]
-                best_indices = tuple(int(i) for i in idxs.tolist())
-            else:
-                best_indices = (int(np.argmax(col)),)
+    decl_idx = int(np.argmin(min_max_per_decl))
+    hour_idx = int(hour_idx_per_decl[decl_idx])
+
+    global_min_max_dot = float(min_max_per_decl[decl_idx])
+    w_decl = float(decls[decl_idx])
+    w_H = float(Hs[hour_idx])
+
+    col = dots[decl_idx, :, hour_idx]
+    best = float(col.max())
+    if return_multiple_best_points:
+        idxs = np.where(col >= best - tie_tol)[0]
+        best_indices = tuple(int(i) for i in idxs.tolist())
+    else:
+        best_indices = (int(np.argmax(col)),)
 
     worst_alt = math.degrees(math.asin(float(np.clip(global_min_max_dot, -1.0, 1.0))))
     always = (global_min_max_dot > limit_dot) or math.isclose(global_min_max_dot, limit_dot, abs_tol=1e-15)
