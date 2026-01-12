@@ -107,6 +107,10 @@ Tips for better results:
 
 ## Tests
 
+Use test discovery so `unittest` searches the `tests/` directory:
+
 ```bash
-python -m unittest -v
+python -m unittest discover -s tests -v
 ```
+
+Expected output includes a summary like `Ran 15 tests ... OK` (counts may vary as tests change).
