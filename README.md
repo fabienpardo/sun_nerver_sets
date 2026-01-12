@@ -44,6 +44,16 @@ Use extreme boundary points (W/E/N/S) of each territory component, not only cent
 - `data/countries/*.json` — country definitions (points + metadata)
 - `tests/` — unit tests (stdlib `unittest`)
 
+## Installation
+
+From the repo root:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .
+```
+
 ## Quick start
 
 From the repo root:
@@ -58,9 +68,44 @@ Outputs:
 - `out/<country_id>/report.md`
 - `out/<country_id>/witness.json`
 
+## Country data format (JSON)
+
+Country definitions live in `data/countries/*.json`. Each file must define a
+unique `id` and at least one territory component with points expressed as
+latitude/longitude pairs (in degrees). A minimal example:
+
+```json
+{
+  "id": "island_example",
+  "name": "Island Example",
+  "components": [
+    {
+      "name": "main",
+      "points": [
+        {"lat": 65.0, "lon": -20.0},
+        {"lat": 66.0, "lon": -19.0},
+        {"lat": 66.0, "lon": -21.0}
+      ]
+    }
+  ]
+}
+```
+
+Tips for better results:
+- Prefer extreme boundary points (W/E/N/S) over only centroids.
+- Split geographically separated regions into separate `components`.
+- Keep points in degrees (not radians) and longitudes in the `[-180, 180]` range.
+
+## Output interpretation
+
+- `summary.json` reports which countries pass the “never sets” test for a given
+  visibility limit.
+- Each `witness.json` contains the “worst” Sun direction and the witness
+  component/point that defines the minimum margin.
+- The Markdown report includes a short summary of inputs and outcomes.
+
 ## Tests
 
 ```bash
 python -m unittest -v
 ```
-# sun_nerver_sets
