@@ -1,52 +1,60 @@
-# never_sets — mini library
+# never_sets
 
-A small, documented library to test whether the Sun is **above the horizon (or "visible")**
-somewhere within a set of territory points for **all achievable Sun directions over the year**.
+A research-grade Python toolkit for answering a deceptively simple question:
 
-## Core idea (theorem-based)
+> **Is the Sun above the horizon somewhere within a territory for *every* achievable Sun direction throughout the year?**
 
-Represent territory points as unit vectors `n_i` on the unit sphere.
-Represent Sun direction `s` as a unit vector parameterized by declination δ and hour angle H.
+`never_sets` evaluates the **“never sets”** condition using rigorous spherical geometry and a full sweep of Sun directions (declination × hour angle). It is built for reproducibility, transparent inputs, and batch processing across many territories.
 
-For each Sun direction, compute:
-`h(s) = max_i (n_i · s)`.
+---
 
-The "never sets" condition holds (on the sampled grid) if:
+## ✨ Highlights
 
-`min_s h(s) > sin(limit_alt)`  (or equality within floating tolerance)
+- **Full-sky sweep** across all achievable Sun directions over a year (not time zones).
+- **Configurable visibility threshold** for geometric sunrise or “visible sunrise” with refraction.
+- **Batch execution** over territory JSON files with deterministic outputs.
+- **Witness geometry** archived for auditing and visualization.
+- **Human-readable reports** generated per territory.
 
-Where `limit_alt` is an altitude threshold in degrees:
-- `0.0°` strict geometric sunrise (Sun center above horizon)
-- `-0.833°` common visible sunrise approximation (refraction + solar radius)
+---
 
-Sun directions `s` are scanned over the yearly declination band `[-ε,+ε]` with `ε≈23.44°`
-and all hour angles `[0,360)`.
+## 🧠 Method (short version)
 
-## What this library is (and is not)
+Each territory point is represented as a unit vector `nᵢ` on the sphere. Each Sun direction `s` is a unit vector parameterized by declination **δ** and hour angle **H**. For a given direction we compute:
 
-✅ Rigorous geometric check over all achievable Sun directions (not time zones).  
-✅ Multiple daylight definitions via `visibility_limit_deg`.  
-✅ Batch runs across country definition JSON files.  
-✅ Archives witness geometries and generates short per-country Markdown reports.
+```
+ h(s) = max_i (n_i · s)
+```
 
-⚠️ Results depend on territory sampling.
-Use extreme boundary points (W/E/N/S) of each territory component, not only centroids.
+The territory satisfies the “never sets” criterion (for a given grid) if:
 
-❌ Does not model topography, weather, or variable refraction.
+```
+min_s h(s) > sin(limit_alt)
+```
 
-## Layout
+Where `limit_alt` is the altitude threshold in degrees:
+- `0.0°` — geometric sunrise (Sun center above the horizon)
+- `-0.833°` — common “visible sunrise” approximation (refraction + solar radius)
 
-- `never_sets/core.py` — math + grid search
-- `never_sets/country_store.py` — load country definitions from JSON
-- `never_sets/archive.py` — archive witness geometry to JSON
-- `never_sets/report.py` — generate per-country markdown report
-- `never_sets/batch.py` — batch CLI runner (writes reports + witness archives + summary.json)
-- `data/countries/*.json` — country definitions (points + metadata)
-- `tests/` — unit tests (stdlib `unittest`)
+Sun directions are scanned over the yearly declination band **[-ε, +ε]** with **ε ≈ 23.44°**, and all hour angles **[0, 360)**.
 
-## Installation
+> ⚠️ Results depend on territory sampling. Use boundary/extreme points (W/E/N/S) rather than centroids only.
 
-From the repo root:
+---
+
+## 📦 Project layout
+
+- `never_sets/core.py` — geometry + grid sweep
+- `never_sets/country_store.py` — JSON territory loading
+- `never_sets/archive.py` — witness geometry archive
+- `never_sets/report.py` — report generation
+- `never_sets/batch.py` — batch CLI runner
+- `data/countries/*.json` — territory definitions
+- `tests/` — unit tests (`unittest`)
+
+---
+
+## 🚀 Installation
 
 ```bash
 python -m venv .venv
@@ -54,25 +62,34 @@ source .venv/bin/activate
 pip install -e .
 ```
 
-## Quick start
+---
 
-From the repo root:
+## ⚡ Quick start
+
+Run a batch check for geometric sunrise:
 
 ```bash
 python -m never_sets.batch --data ./data/countries --out ./out --limit 0.0
+```
+
+Run with refraction-adjusted sunrise:
+
+```bash
 python -m never_sets.batch --data ./data/countries --out ./out --limit -0.833
 ```
 
-Outputs:
+Outputs (per run):
+
 - `out/summary.json`
 - `out/<country_id>/report.md`
 - `out/<country_id>/witness.json`
 
-## Country data format (JSON)
+---
 
-Country definitions live in `data/countries/*.json`. Each file must define a
-unique `id` and at least one territory component with points expressed as
-latitude/longitude pairs (in degrees). A minimal example:
+## 🗺️ Territory format (JSON)
+
+Each file in `data/countries/*.json` defines a unique `id`, a human-readable `name`,
+and one or more `components` with latitude/longitude points in degrees.
 
 ```json
 {
@@ -91,26 +108,29 @@ latitude/longitude pairs (in degrees). A minimal example:
 }
 ```
 
-Tips for better results:
-- Prefer extreme boundary points (W/E/N/S) over only centroids.
-- Split geographically separated regions into separate `components`.
-- Keep points in degrees (not radians) and longitudes in the `[-180, 180]` range.
+**Best practices:**
+- Use **boundary/extreme points** instead of only centroids.
+- Split disconnected regions into separate `components`.
+- Keep longitudes in `[-180, 180]` and lat/lon in degrees.
 
-## Output interpretation
+---
 
-- `summary.json` reports which countries pass the “never sets” test for a given
-  visibility limit, along with margin and sampling metadata (like point count).
-- Each `witness.json` contains the “worst” Sun direction and the witness
-  component/point that defines the minimum margin.
-- The Markdown report includes a short summary of inputs and outcomes, plus
-  a plain-language verdict, interpretation notes, and a glossary.
+## 📊 Interpreting outputs
 
-## Tests
+- **`summary.json`** — pass/fail result per territory, with margin and sampling metadata.
+- **`witness.json`** — the worst-case Sun direction and witness point.
+- **`report.md`** — short human-readable verdict + glossary.
 
-Use test discovery so `unittest` searches the `tests/` directory:
+---
+
+## ✅ Tests
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-Expected output includes a summary like `Ran 15 tests ... OK` (counts may vary as tests change).
+---
+
+## License
+
+This repository is intended for research and educational use. See individual files for details.
