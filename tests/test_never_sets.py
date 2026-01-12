@@ -112,5 +112,24 @@ class TestCountryStore(unittest.TestCase):
         self.assertEqual(country.name, "X")
         self.assertEqual(to_latlon_list(country), [(1.0, 2.0)])
 
+    def test_loads_components_without_labels(self):
+        payload = {
+            "id": "x",
+            "name": "X",
+            "components": [
+                {
+                    "name": "main",
+                    "points": [{"lat": 1, "lon": 2}, {"lat": 3, "lon": 4, "label": "b"}],
+                }
+            ],
+        }
+        path = self.write_country(payload)
+        try:
+            country = load_country(path)
+        finally:
+            path.unlink(missing_ok=True)
+        self.assertEqual(to_latlon_list(country), [(1.0, 2.0), (3.0, 4.0)])
+        self.assertEqual(country.points[0].label, "main 1")
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
