@@ -55,6 +55,20 @@ def check_never_sets(
     pts = list(territory_points)
     if not pts:
         raise ValueError("territory_points must contain at least one (lat, lon) pair.")
+    if decl_step_deg <= 0:
+        raise ValueError("decl_step_deg must be positive.")
+    if hour_angle_step_deg <= 0:
+        raise ValueError("hour_angle_step_deg must be positive.")
+    if not (0.0 <= obliquity_deg <= 90.0):
+        raise ValueError("obliquity_deg must be between 0 and 90 degrees.")
+    if not (-90.0 <= visibility_limit_deg <= 90.0):
+        raise ValueError("visibility_limit_deg must be between -90 and 90 degrees.")
+    if tie_tol < 0:
+        raise ValueError("tie_tol must be non-negative.")
+
+    for lat, lon in pts:
+        if not (math.isfinite(lat) and math.isfinite(lon)):
+            raise ValueError("territory_points must contain finite latitude/longitude values.")
 
     N = np.vstack([latlon_to_unit(lat, lon) for lat, lon in pts])  # (K,3)
     limit_dot = math.sin(math.radians(visibility_limit_deg))
