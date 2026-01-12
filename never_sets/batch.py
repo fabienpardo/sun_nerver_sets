@@ -42,6 +42,8 @@ def run_batch(data_dir: str | Path, out_dir: str | Path, *, limit: float, decl_s
             "margin_deg": res.margin_altitude_deg,
             "witness_decl_deg": res.witness.decl_deg,
             "witness_hour_angle_deg": res.witness.hour_angle_deg,
+            "point_count": len(country.points),
+            "interpretation": "margin_deg >= 0 indicates the 'never sets' condition for the chosen visibility limit",
         })
 
     (out_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
