@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-01-09T20:42:21.463216+00:00",
+  "timestamp_utc": "2026-01-12T20:54:55.560669+00:00",
   "country": {
     "id": "usa",
     "name": "United States (incl. selected territories)",
@@ -76,13 +76,13 @@
     "always_daylight_somewhere": false,
     "limit_altitude_deg": 0.0,
     "limit_dot": 0.0,
-    "margin_altitude_deg": -19.52967960660415
+    "margin_altitude_deg": -19.529679606604155
   },
   "witness": {
     "decl_deg": -23.439281,
     "hour_angle_deg": 39.0,
-    "worst_max_dot": -0.3342951091816315,
-    "worst_max_altitude_deg": -19.52967960660415,
+    "worst_max_dot": -0.3342951091816316,
+    "worst_max_altitude_deg": -19.529679606604155,
     "best_point_indices": [
       7
     ],

@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-01-09T20:42:21.397600+00:00",
+  "timestamp_utc": "2026-01-12T20:54:55.430801+00:00",
   "country": {
     "id": "danish_realm",
     "name": "Danish Realm (Denmark + Faroe Islands + Greenland)",
@@ -51,13 +51,13 @@
     "always_daylight_somewhere": false,
     "limit_altitude_deg": 0.0,
     "limit_dot": 0.0,
-    "margin_altitude_deg": -35.08710494021579
+    "margin_altitude_deg": -35.087104940215795
   },
   "witness": {
     "decl_deg": -23.439281,
     "hour_angle_deg": 131.0,
-    "worst_max_dot": -0.574821103683607,
-    "worst_max_altitude_deg": -35.08710494021579,
+    "worst_max_dot": -0.5748211036836071,
+    "worst_max_altitude_deg": -35.087104940215795,
     "best_point_indices": [
       0
     ],
