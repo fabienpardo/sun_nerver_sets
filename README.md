@@ -99,10 +99,11 @@ Tips for better results:
 ## Output interpretation
 
 - `summary.json` reports which countries pass the “never sets” test for a given
-  visibility limit.
+  visibility limit, along with margin and sampling metadata (like point count).
 - Each `witness.json` contains the “worst” Sun direction and the witness
   component/point that defines the minimum margin.
-- The Markdown report includes a short summary of inputs and outcomes.
+- The Markdown report includes a short summary of inputs and outcomes, plus
+  a plain-language verdict, interpretation notes, and a glossary.
 
 ## Tests
 
