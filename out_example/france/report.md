@@ -1,17 +1,22 @@
 # Report: France (French Republic)
 
 - **ID:** `france`
-- **Verdict:** **PASS**
-- **Visibility limit (altitude):** `0.000°`
-- **Worst-case max altitude:** `19.917°`
-- **Margin:** `19.917°`
+- **Verdict:** **PASS** ✅
+- **Plain-language verdict:** At least one point in this territory has the Sun above the horizon for every achievable Sun direction.
+- **Visibility limit (altitude):** `0.000°` (0.000° = geometric sunrise (Sun center above horizon).)
+- **Worst-case max altitude:** `19.917°` (highest Sun altitude achievable at the worst Sun direction)
+- **Margin:** `19.917°` (worst-case max altitude minus the visibility limit)
+
+## Interpretation
+- Margin ≥ 0° means the territory satisfies the “never sets” condition for the chosen visibility limit.
 
 ## Witness (worst case on sampled grid)
-- Declination: `23.061°`
-- Hour angle: `111.500°`
-- min over grid of max dot: `0.340661`
+- Declination: `23.061°` (tilt of the Sun relative to Earth's equator for this direction)
+- Hour angle: `111.500°` (Sun direction relative to local noon)
+- min over grid of max dot: `0.340661` (minimum across sampled directions of the max dot)
 
 ## Points (anchors)
+- Input points: `12` (add extreme boundary points for higher confidence)
 - 00. **Paris** (lat `48.8566`, lon `2.3522`)
 - 01. **Guadeloupe (Basse-Terre)** (lat `16.2650`, lon `-61.5510`)
 - 02. **Martinique (Fort-de-France)** (lat `14.6415`, lon `-61.0242`)
@@ -28,4 +33,11 @@
 ## Notes
 Anchor points across metropolitan France and overseas territories/collectivities.
 
-> Reminder: results depend on the adequacy of the territory point sampling.
+## Glossary
+- **Visibility limit:** Altitude threshold used to define “visible” Sun.
+- **Worst-case max altitude:** Highest Sun altitude achievable at the most challenging Sun direction.
+- **Margin:** Worst-case max altitude minus the visibility limit.
+- **Declination:** Sun’s angle north/south of Earth’s equatorial plane.
+- **Hour angle:** Sun’s angular distance from local noon.
+
+> Reminder: results depend on the adequacy of the territory point sampling. Use extreme boundary points (W/E/N/S) and split separated regions into components.
