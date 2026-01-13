@@ -2,26 +2,12 @@ from __future__ import annotations
 
 import json
 import math
-from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Tuple, Iterable
+from typing import Iterable, List, Tuple
+
+from ..models.country import CountryDef, CountryPoint
 
 LatLon = Tuple[float, float]
-
-
-@dataclass(frozen=True)
-class CountryPoint:
-    label: str
-    lat: float
-    lon: float
-
-
-@dataclass(frozen=True)
-class CountryDef:
-    id: str
-    name: str
-    points: List[CountryPoint]
-    notes: str = ""
 
 
 def _parse_point_list(
