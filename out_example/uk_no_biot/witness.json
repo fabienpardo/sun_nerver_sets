@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-01-12T20:54:55.546207+00:00",
+  "timestamp_utc": "2026-01-13T19:34:38.078249+00:00",
   "country": {
     "id": "uk_no_biot",
     "name": "United Kingdom (excluding BIOT/Diego Garcia)",
@@ -76,13 +76,13 @@
     "always_daylight_somewhere": false,
     "limit_altitude_deg": 0.0,
     "limit_dot": 0.0,
-    "margin_altitude_deg": -20.606955034674446
+    "margin_altitude_deg": -20.691677995881907
   },
   "witness": {
-    "decl_deg": -9.439281000000001,
+    "decl_deg": -9.539280999999804,
     "hour_angle_deg": 111.5,
-    "worst_max_dot": -0.35195527244551106,
-    "worst_max_altitude_deg": -20.606955034674446,
+    "worst_max_dot": -0.3533389701992945,
+    "worst_max_altitude_deg": -20.691677995881907,
     "best_point_indices": [
       1
     ],
