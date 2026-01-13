@@ -58,8 +58,13 @@ Sun directions are scanned over the yearly declination band **[-ε, +ε]** with 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e .
+python -m pip install -e .
 ```
+
+If you see `ModuleNotFoundError: No module named 'never_sets'`, double-check that
+`python` points at your virtual environment (e.g., `which python` should resolve
+to `.venv/bin/python`). If you use `fish`, activate with
+`source .venv/bin/activate.fish`.
 
 ---
 
