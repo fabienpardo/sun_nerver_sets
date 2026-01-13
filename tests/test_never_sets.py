@@ -11,6 +11,7 @@ from never_sets import check_never_sets, load_country, to_latlon_list
 
 DATA = Path(__file__).resolve().parents[1] / "data" / "countries"
 
+
 class TestNeverSets(unittest.TestCase):
     def test_france_passes_strict(self):
         c = load_country(DATA / "france.json")
@@ -73,6 +74,13 @@ class TestNeverSets(unittest.TestCase):
         with self.assertRaises(ValueError):
             check_never_sets(pts)
 
+    def test_rejects_out_of_range_points(self):
+        pts = [(100.0, 0.0)]
+        with self.assertRaises(ValueError):
+            check_never_sets(pts)
+        pts = [(0.0, 200.0)]
+        with self.assertRaises(ValueError):
+            check_never_sets(pts)
 
 class TestCountryStore(unittest.TestCase):
     def write_country(self, payload: dict) -> Path:
@@ -113,6 +121,20 @@ class TestCountryStore(unittest.TestCase):
         self.assertEqual(country.id, "x")
         self.assertEqual(country.name, "X")
         self.assertEqual(to_latlon_list(country), [(1.0, 2.0)])
+
+    def test_rejects_out_of_range_country_points(self):
+        path = self.write_country({"id": "x", "points": [{"label": "a", "lat": 95, "lon": 0}]})
+        try:
+            with self.assertRaises(ValueError):
+                load_country(path)
+        finally:
+            path.unlink(missing_ok=True)
+        path = self.write_country({"id": "x", "points": [{"label": "a", "lat": 0, "lon": -181}]})
+        try:
+            with self.assertRaises(ValueError):
+                load_country(path)
+        finally:
+            path.unlink(missing_ok=True)
 
     def test_loads_components_without_labels(self):
         payload = {

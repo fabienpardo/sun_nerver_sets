@@ -36,6 +36,10 @@ def check_never_sets(
     for lat, lon in pts:
         if not (math.isfinite(lat) and math.isfinite(lon)):
             raise ValueError("territory_points must contain finite latitude/longitude values.")
+        if not (-90.0 <= lat <= 90.0):
+            raise ValueError("territory_points must have latitude within [-90, 90].")
+        if not (-180.0 <= lon <= 180.0):
+            raise ValueError("territory_points must have longitude within [-180, 180].")
 
     N = np.vstack([latlon_to_unit(lat, lon) for lat, lon in pts])  # (K,3)
     limit_dot = math.sin(math.radians(visibility_limit_deg))

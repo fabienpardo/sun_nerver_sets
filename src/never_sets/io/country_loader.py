@@ -42,6 +42,10 @@ def _parse_point_list(
 
         if not (math.isfinite(lat) and math.isfinite(lon)):
             raise ValueError(f"Point {idx} in {path} has non-finite lat/lon.")
+        if not (-90.0 <= lat <= 90.0):
+            raise ValueError(f"Point {idx} in {path} has latitude outside [-90, 90].")
+        if not (-180.0 <= lon <= 180.0):
+            raise ValueError(f"Point {idx} in {path} has longitude outside [-180, 180].")
 
         points.append(CountryPoint(label=label, lat=lat, lon=lon))
     return points
