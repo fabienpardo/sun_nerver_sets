@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-01-12T20:54:55.474565+00:00",
+  "timestamp_utc": "2026-01-13T19:34:36.785549+00:00",
   "country": {
     "id": "france",
     "name": "France (French Republic)",
@@ -71,13 +71,13 @@
     "always_daylight_somewhere": true,
     "limit_altitude_deg": 0.0,
     "limit_dot": 0.0,
-    "margin_altitude_deg": 19.91717481654175
+    "margin_altitude_deg": 19.739287564340984
   },
   "witness": {
-    "decl_deg": 23.060719,
+    "decl_deg": 23.360719000000664,
     "hour_angle_deg": 111.5,
-    "worst_max_dot": 0.34066139295591413,
-    "worst_max_altitude_deg": 19.91717481654175,
+    "worst_max_dot": 0.33774074298498113,
+    "worst_max_altitude_deg": 19.739287564340984,
     "best_point_indices": [
       9
     ],

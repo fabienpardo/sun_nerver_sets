@@ -2,20 +2,43 @@
 
 - **ID:** `uk_no_biot`
 - **Verdict:** **FAIL** ❌
-- **Plain-language verdict:** There exists at least one achievable Sun direction where all points are below the visibility limit.
-- **Visibility limit (altitude):** `0.000°` (0.000° = geometric sunrise (Sun center above horizon).)
-- **Worst-case max altitude:** `-20.607°` (highest Sun altitude achievable at the worst Sun direction)
-- **Margin:** `-20.607°` (worst-case max altitude minus the visibility limit)
+- **Plain-language verdict:** ❌ There exists at least one achievable Sun direction where all points are below the visibility limit.
+
+## At a glance
+- **Visibility limit (what counts as “Sun visible”):** `0.000°` (0.000° = geometric sunrise (Sun center above horizon).)
+- **Worst-case max altitude:** `-20.692°` (highest Sun altitude achievable at the *hardest* Sun direction)
+- **Margin:** `-20.692°` (worst-case max altitude − visibility limit)
+
+## How to read this report
+- Imagine sweeping the Sun across all physically achievable directions.
+- At each direction, find the **single best point** in the territory (highest Sun altitude).
+- The **worst-case max altitude** is the *lowest* of those best-case values.
+- The **margin** tells you how far above/below your visibility limit the worst case is.
 
 ## Interpretation
-- Margin ≥ 0° means the territory satisfies the “never sets” condition for the chosen visibility limit.
+- If the margin is **≥ 0°**, then *at least one point* in the territory keeps the Sun above the visibility limit for **every achievable Sun direction**. If the margin is **< 0°**, there exists a Sun direction where **all points** are below the visibility limit.
+
+## Simple picture (conceptual)
+```
+Sun altitude
+    ^
+    |           .   best point for this Sun direction
+    |        .
+    |     .
+    |  .
+    |.
+    +--------------------> Sun direction sweep
+        ^
+        | worst-case max altitude (lowest of the best points)
+```
+
 
 ## Witness (worst case on sampled grid)
-- Declination: `-9.439°` (tilt of the Sun relative to Earth's equator for this direction)
+- Declination: `-9.539°` (tilt of the Sun relative to Earth's equator for this direction)
 - Hour angle: `111.500°` (Sun direction relative to local noon)
-- min over grid of max dot: `-0.351955` (minimum across sampled directions of the max dot)
+- min over grid of max dot: `-0.353339` (minimum across sampled directions of the max dot)
 
-## Points (anchors)
+## Territory coverage (sampled points)
 - Input points: `13` (add extreme boundary points for higher confidence)
 - 00. **London** (lat `51.5074`, lon `-0.1278`)
 - 01. **Aberdeen** (lat `57.1497`, lon `-2.0943`) ← best at witness

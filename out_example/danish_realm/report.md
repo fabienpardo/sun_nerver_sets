@@ -2,27 +2,50 @@
 
 - **ID:** `danish_realm`
 - **Verdict:** **FAIL** ❌
-- **Plain-language verdict:** There exists at least one achievable Sun direction where all points are below the visibility limit.
-- **Visibility limit (altitude):** `0.000°` (0.000° = geometric sunrise (Sun center above horizon).)
-- **Worst-case max altitude:** `-35.087°` (highest Sun altitude achievable at the worst Sun direction)
-- **Margin:** `-35.087°` (worst-case max altitude minus the visibility limit)
+- **Plain-language verdict:** ❌ There exists at least one achievable Sun direction where all points are below the visibility limit.
+
+## At a glance
+- **Visibility limit (what counts as “Sun visible”):** `0.000°` (0.000° = geometric sunrise (Sun center above horizon).)
+- **Worst-case max altitude:** `-35.099°` (highest Sun altitude achievable at the *hardest* Sun direction)
+- **Margin:** `-35.099°` (worst-case max altitude − visibility limit)
+
+## How to read this report
+- Imagine sweeping the Sun across all physically achievable directions.
+- At each direction, find the **single best point** in the territory (highest Sun altitude).
+- The **worst-case max altitude** is the *lowest* of those best-case values.
+- The **margin** tells you how far above/below your visibility limit the worst case is.
 
 ## Interpretation
-- Margin ≥ 0° means the territory satisfies the “never sets” condition for the chosen visibility limit.
+- If the margin is **≥ 0°**, then *at least one point* in the territory keeps the Sun above the visibility limit for **every achievable Sun direction**. If the margin is **< 0°**, there exists a Sun direction where **all points** are below the visibility limit.
+
+## Simple picture (conceptual)
+```
+Sun altitude
+    ^
+    |           .   best point for this Sun direction
+    |        .
+    |     .
+    |  .
+    |.
+    +--------------------> Sun direction sweep
+        ^
+        | worst-case max altitude (lowest of the best points)
+```
+
 
 ## Witness (worst case on sampled grid)
 - Declination: `-23.439°` (tilt of the Sun relative to Earth's equator for this direction)
-- Hour angle: `131.000°` (Sun direction relative to local noon)
-- min over grid of max dot: `-0.574821` (minimum across sampled directions of the max dot)
+- Hour angle: `131.100°` (Sun direction relative to local noon)
+- min over grid of max dot: `-0.574994` (minimum across sampled directions of the max dot)
 
-## Points (anchors)
+## Territory coverage (sampled points)
 - Input points: `8` (add extreme boundary points for higher confidence)
-- 00. **Copenhagen** (lat `55.6761`, lon `12.5683`) ← best at witness
+- 00. **Copenhagen** (lat `55.6761`, lon `12.5683`)
 - 01. **Aarhus** (lat `56.1629`, lon `10.2039`)
 - 02. **Tórshavn (Faroe Islands)** (lat `62.0079`, lon `-6.7900`)
 - 03. **Nuuk (Greenland)** (lat `64.1814`, lon `-51.6941`)
 - 04. **Tasiilaq (Greenland east)** (lat `65.6142`, lon `-37.6368`)
-- 05. **Qaanaaq (Greenland north)** (lat `77.4670`, lon `-69.2280`)
+- 05. **Qaanaaq (Greenland north)** (lat `77.4670`, lon `-69.2280`) ← best at witness
 - 06. **Qaqortoq (Greenland south)** (lat `60.7195`, lon `-46.0453`)
 - 07. **Ilulissat (Greenland)** (lat `69.2167`, lon `-51.1000`)
 
