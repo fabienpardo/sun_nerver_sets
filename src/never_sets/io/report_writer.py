@@ -19,13 +19,14 @@ def render_markdown_report(country: CountryDef, result: CoverageResult) -> str:
         else "Custom threshold for visible Sun altitude."
     )
     interpretation = (
-        "Margin ≥ 0° means the territory satisfies the “never sets” condition "
-        "for the chosen visibility limit."
+        "If the margin is **≥ 0°**, then *at least one point* in the territory keeps the Sun above the "
+        "visibility limit for **every achievable Sun direction**. If the margin is **< 0°**, there exists "
+        "a Sun direction where **all points** are below the visibility limit."
     )
     plain_verdict = (
-        "At least one point in this territory has the Sun above the horizon for every achievable Sun direction."
+        "✅ At least one point in this territory has the Sun above the visibility limit for every achievable Sun direction."
         if result.always_daylight_somewhere
-        else "There exists at least one achievable Sun direction where all points are below the visibility limit."
+        else "❌ There exists at least one achievable Sun direction where all points are below the visibility limit."
     )
 
     lines = [
@@ -34,19 +35,41 @@ def render_markdown_report(country: CountryDef, result: CoverageResult) -> str:
         f"- **ID:** `{country.id}`",
         f"- **Verdict:** **{status}** {verdict_icon}",
         f"- **Plain-language verdict:** {plain_verdict}",
-        f"- **Visibility limit (altitude):** `{result.limit_altitude_deg:.3f}°` ({limit_desc})",
-        f"- **Worst-case max altitude:** `{w.worst_max_altitude_deg:.3f}°` (highest Sun altitude achievable at the worst Sun direction)",
-        f"- **Margin:** `{result.margin_altitude_deg:.3f}°` (worst-case max altitude minus the visibility limit)",
+        "",
+        "## At a glance",
+        f"- **Visibility limit (what counts as “Sun visible”):** `{result.limit_altitude_deg:.3f}°` ({limit_desc})",
+        f"- **Worst-case max altitude:** `{w.worst_max_altitude_deg:.3f}°` (highest Sun altitude achievable at the *hardest* Sun direction)",
+        f"- **Margin:** `{result.margin_altitude_deg:.3f}°` (worst-case max altitude − visibility limit)",
+        "",
+        "## How to read this report",
+        "- Imagine sweeping the Sun across all physically achievable directions.",
+        "- At each direction, find the **single best point** in the territory (highest Sun altitude).",
+        "- The **worst-case max altitude** is the *lowest* of those best-case values.",
+        "- The **margin** tells you how far above/below your visibility limit the worst case is.",
         "",
         "## Interpretation",
         f"- {interpretation}",
+        "",
+        "## Simple picture (conceptual)",
+        "```\n"
+        "Sun altitude\n"
+        "    ^\n"
+        "    |           .   best point for this Sun direction\n"
+        "    |        .\n"
+        "    |     .\n"
+        "    |  .\n"
+        "    |.\n"
+        "    +--------------------> Sun direction sweep\n"
+        "        ^\n"
+        "        | worst-case max altitude (lowest of the best points)\n"
+        "```\n",
         "",
         "## Witness (worst case on sampled grid)",
         f"- Declination: `{w.decl_deg:.3f}°` (tilt of the Sun relative to Earth's equator for this direction)",
         f"- Hour angle: `{w.hour_angle_deg:.3f}°` (Sun direction relative to local noon)",
         f"- min over grid of max dot: `{w.worst_max_dot:.6f}` (minimum across sampled directions of the max dot)",
         "",
-        "## Points (anchors)",
+        "## Territory coverage (sampled points)",
         f"- Input points: `{len(country.points)}` (add extreme boundary points for higher confidence)",
     ]
     best_indices_set = set(w.best_point_indices)
