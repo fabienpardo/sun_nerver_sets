@@ -1,11 +1,13 @@
 import json
 import math
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-from never_sets.core import check_never_sets
-from never_sets.country_store import load_country, to_latlon_list
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from never_sets import check_never_sets, load_country, to_latlon_list
 
 DATA = Path(__file__).resolve().parents[1] / "data" / "countries"
 

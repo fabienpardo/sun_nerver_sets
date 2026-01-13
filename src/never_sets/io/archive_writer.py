@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
-from typing import Dict, Any, Optional
 from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Dict, Optional
 
-from .core import CoverageResult
-from .country_store import CountryDef
+from ..models.country import CountryDef
+from ..models.result import CoverageResult
 
 
 def archive_witness(
@@ -14,7 +14,7 @@ def archive_witness(
     country: CountryDef,
     result: CoverageResult,
     *,
-    extra: Optional[Dict[str, Any]] = None
+    extra: Optional[Dict[str, Any]] = None,
 ) -> Path:
     out_dir = Path(out_dir)
     cdir = out_dir / country.id
@@ -26,7 +26,7 @@ def archive_witness(
             "id": country.id,
             "name": country.name,
             "notes": country.notes,
-            "points": [ {"label": p.label, "lat": p.lat, "lon": p.lon} for p in country.points ],
+            "points": [{"label": p.label, "lat": p.lat, "lon": p.lon} for p in country.points],
         },
         "result": {
             "always_daylight_somewhere": result.always_daylight_somewhere,
@@ -40,8 +40,8 @@ def archive_witness(
             "worst_max_dot": result.witness.worst_max_dot,
             "worst_max_altitude_deg": result.witness.worst_max_altitude_deg,
             "best_point_indices": list(result.witness.best_point_indices),
-            "best_point_labels": [ country.points[i].label for i in result.witness.best_point_indices ],
-        }
+            "best_point_labels": [country.points[i].label for i in result.witness.best_point_indices],
+        },
     }
     if extra:
         payload["extra"] = extra

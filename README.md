@@ -44,11 +44,10 @@ Sun directions are scanned over the yearly declination band **[-ε, +ε]** with 
 
 ## 📦 Project layout
 
-- `never_sets/core.py` — geometry + grid sweep
-- `never_sets/country_store.py` — JSON territory loading
-- `never_sets/archive.py` — witness geometry archive
-- `never_sets/report.py` — report generation
-- `never_sets/batch.py` — batch CLI runner
+- `src/never_sets/core/` — geometry + grid sweep
+- `src/never_sets/io/` — JSON territory loading, reports, archives
+- `src/never_sets/models/` — typed data models
+- `src/never_sets/cli/batch.py` — batch CLI runner
 - `data/countries/*.json` — territory definitions
 - `tests/` — unit tests (`unittest`)
 
@@ -69,13 +68,13 @@ pip install -e .
 Run a batch check for geometric sunrise:
 
 ```bash
-python -m never_sets.batch --data ./data/countries --out ./out --limit 0.0
+python -m never_sets.cli.batch --data ./data/countries --out ./out --limit 0.0
 ```
 
 Run with refraction-adjusted sunrise:
 
 ```bash
-python -m never_sets.batch --data ./data/countries --out ./out --limit -0.833
+python -m never_sets.cli.batch --data ./data/countries --out ./out --limit -0.833
 ```
 
 Outputs (per run):

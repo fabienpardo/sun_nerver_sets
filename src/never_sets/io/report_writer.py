@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from pathlib import Path
-from .core import CoverageResult
-from .country_store import CountryDef
+
+from ..models.country import CountryDef
+from ..models.result import CoverageResult
 
 
 def render_markdown_report(country: CountryDef, result: CoverageResult) -> str:
