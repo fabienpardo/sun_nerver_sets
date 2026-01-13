@@ -58,8 +58,21 @@ Sun directions are scanned over the yearly declination band **[-ε, +ε]** with 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e .
+python -m pip install -e .
 ```
+
+If you see `ModuleNotFoundError: No module named 'never_sets'`, double-check that
+`python` points at your virtual environment (e.g., `which python` should resolve
+to `.venv/bin/python` and `python -c "import sys; print(sys.executable)"` should
+print the same). If your shell auto-loads another environment (e.g., `pyenv`,
+`direnv`, or `conda`), prefer explicit commands like:
+
+```bash
+.venv/bin/python -m pip install -e .
+.venv/bin/python -m never_sets.cli.batch --data ./data/countries --out ./out --limit 0.0
+```
+
+If you use `fish`, activate with `source .venv/bin/activate.fish`.
 
 ---
 
